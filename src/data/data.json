@@ -1,0 +1,25 @@
+{
+  "posts": [
+    {
+      "image": "asda",
+      "category": "Travel",
+      "title": "Title",
+      "content": "content",
+      "date": "ASDASDASd"
+    },
+    {
+      "image": "asda",
+      "category": "Travel",
+      "title": "Title",
+      "content": "content",
+      "date": "ASDASDASd"
+    },
+    {
+      "image": "asda",
+      "category": "Travel",
+      "title": "Title",
+      "content": "content",
+      "date": "ASDASDASd"
+    }
+  ]
+}
