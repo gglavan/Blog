@@ -1,15 +1,18 @@
-import React from "react";
+import React, { Component } from "react";
 import DemoPost from "./DemoPost";
 import "../styles/PopularPosts.css";
 
-const PopularPosts = () => (
-  <div className="wrapper container">
-    <h6>Popular Posts</h6>
-    <DemoPost />
-    <DemoPost />
-    <DemoPost />
-    <DemoPost />
-  </div>
-);
+class PopularPosts extends Component {
+  render() {
+    return (
+      <div className="wrapper container">
+        <h6>Popular Posts</h6>
+        {this.props.popular.map((post, index) => (
+          <DemoPost {...post} key={index} />
+        ))}
+      </div>
+    );
+  }
+}
 
 export default PopularPosts;
