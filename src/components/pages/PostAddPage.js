@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import Navbar from "../elements/Navbar";
-import Post from "../elements/Post";
 import Newsletter from "../elements/Newsletter";
 import PopularPosts from "../elements/PopularPosts";
 import Footer from "../elements/Footer";
+import NewPostForm from "../elements/NewPostForm";
 import preload from "../../data/data.json";
 
 class PostDetailsPage extends Component {
-  componentDidMount() {
-    window.scrollTo(0, 0);
-  }
   render() {
     return (
       <div>
@@ -17,7 +14,7 @@ class PostDetailsPage extends Component {
         <div className="container">
           <div className="row">
             <div className="col-sm-9">
-              <Post {...this.props.location.state.linkState} />
+              <NewPostForm />
             </div>
             <div className="col-sm-3">
               <Newsletter />

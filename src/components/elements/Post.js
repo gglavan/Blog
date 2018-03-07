@@ -18,7 +18,12 @@ class Post extends Component {
           <div className="post-title">{this.props.title}</div>
           <div className="post-content">{this.props.content}</div>
           <div className="post-button">
-            <Link to={`/posts/${this.urlTitle()}`}>
+            <Link
+              to={{
+                pathname: `/posts/${this.urlTitle()}`,
+                state: { linkState: this.props }
+              }}
+            >
               <button>continue reading</button>
             </Link>
           </div>
