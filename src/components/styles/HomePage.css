@@ -3,6 +3,11 @@
   src: url("../../fonts/RammettoOne-Regular.ttf");
 }
 
+@font-face {
+  font-family: "Roboto-Black";
+  src: url("../../fonts/Roboto-Black.ttf");
+}
+
 .wallpaper {
   z-index: -999;
   position: absolute;
@@ -21,9 +26,42 @@
 }
 
 .greeting-block {
-  font-family: "Rammetto";
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  transform: translate(-50%, -50%);
+}
+
+.greeting-primary {
+  font-family: "Roboto-Light";
   color: #fff;
   font-size: 50px;
-  text-align: center;
-  margin-top: 300px;
+}
+
+.greeting-secondary {
+  font-family: "Roboto-Light";
+  color: #fff;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.greeting-button {
+  cursor: pointer;
+  padding: 10px 20px;
+  margin-top: 20px;
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 18px;
+  font-family: Roboto-Light;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  transition: background-color 0.5s, color 0.5s ease-in-out;
+}
+
+.greeting-button:hover {
+  background-color: #393939;
+  color: #fff;
 }

@@ -6,7 +6,7 @@ import PopularPosts from "../elements/PopularPosts";
 import Footer from "../elements/Footer";
 import preload from "../../data/data.json";
 
-class PostsPage extends Component {
+class PostDetailsPage extends Component {
   render() {
     return (
       <div>
@@ -14,9 +14,10 @@ class PostsPage extends Component {
         <div className="container">
           <div className="row">
             <div className="col-sm-9">
-              {preload.posts.map((post, index) => (
+              {/* {preload.posts.map((post, index) => (
                 <Post {...post} key={index} />
-              ))}
+              ))} */}
+              <Post />
             </div>
             <div className="col-sm-3">
               <Newsletter />
@@ -30,4 +31,4 @@ class PostsPage extends Component {
   }
 }
 
-export default PostsPage;
+export default PostDetailsPage;

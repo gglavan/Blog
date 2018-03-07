@@ -1,7 +1,14 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "../styles/Post.css";
 
 class Post extends Component {
+  state = {};
+  urlTitle = () =>
+    String(this.props.title)
+      .toLowerCase()
+      .split(" ")
+      .join("-");
   render() {
     return (
       <div className="wrapper">
@@ -11,7 +18,9 @@ class Post extends Component {
           <div className="post-title">{this.props.title}</div>
           <div className="post-content">{this.props.content}</div>
           <div className="post-button">
-            <button>continue reading</button>
+            <Link to={`/posts/${this.urlTitle()}`}>
+              <button>continue reading</button>
+            </Link>
           </div>
           <div className="post-date">
             By <span>{this.props.author}</span> on {this.props.date}
