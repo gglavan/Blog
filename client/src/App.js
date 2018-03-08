@@ -9,7 +9,7 @@ const App = () => (
   <div>
     <Route path="/" exact component={HomePage} />
     <Route path="/posts" exact component={PostsPage} />
-    <Route name="post" path="/posts/:id" exact component={PostDetailsPage} />
+    <Route path="/posts/:id" exact component={PostDetailsPage} />
     <Route path="/posts/add/new" exact component={PostAddPage} />
   </div>
 );

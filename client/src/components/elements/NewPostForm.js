@@ -5,9 +5,9 @@ class NewPostForm extends Component {
   state = {
     category: "",
     title: "",
-    body: "",
+    content: "",
     image: "",
-    date: ""
+    author: ""
   };
 
   handleCategoryChange = e => {
@@ -18,23 +18,28 @@ class NewPostForm extends Component {
     this.setState({ title: e.target.value });
   };
 
-  handleBodyChange = e => {
-    this.setState({ body: e.target.value });
+  handleContentChange = e => {
+    this.setState({ content: e.target.value });
   };
 
   handleImageChange = e => {
     this.setState({ image: e.target.value });
   };
 
+  handleAuthorChange = e => {
+    this.setState({ author: e.target.value });
+  };
+
   handlePost = e => {
-    // e.prevent
+    // e.preventDefault();
+    console.log(this.state);
   };
 
   render() {
     return (
       <div className="wrapper container">
         <h6>Share your feelings!</h6>
-        <form method="post" action="/api/posts">
+        <form method="post" action="/api/posts" encType="multipart/form-data">
           <div className="form-group">
             <label htmlFor="title">Category:</label>
             <select
@@ -64,14 +69,14 @@ class NewPostForm extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="body">Post content:</label>
+            <label htmlFor="content">Post content:</label>
             <textarea
               className="form-control"
-              id="body"
+              id="content"
               rows="10"
-              value={this.state.body}
-              onChange={this.handleBodyChange}
-              name="body"
+              value={this.state.content}
+              onChange={this.handleContentChange}
+              name="content"
             />
           </div>
           <div className="form-group">
@@ -79,10 +84,22 @@ class NewPostForm extends Component {
             <input
               type="file"
               className="form-control-file"
-              id="file"
+              id="image"
               value={this.state.image}
               onChange={this.handleImageChange}
               name="image"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="author">Author:</label>
+            <input
+              type="text"
+              className="form-control"
+              id="author"
+              placeholder="Enter your name"
+              value={this.state.author}
+              onChange={this.handleAuthorChange}
+              name="author"
             />
           </div>
           <button

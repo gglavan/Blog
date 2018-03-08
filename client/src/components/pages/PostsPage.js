@@ -8,25 +8,17 @@ import preload from "../../data/data.json";
 
 class PostsPage extends Component {
   state = {
-    response: ""
+    posts: []
   };
 
   componentDidMount() {
-    this.callApi()
-      .then(res => {
-        this.setState({ response: res.express });
-        console.log(this.state.response);
-      })
-      .catch(err => console.log(err));
+    fetch("/api/posts")
+      .then(res => res.json())
+      .then(posts => {
+        this.setState({ posts });
+      });
   }
 
-  callApi = async () => {
-    const response = await fetch("/api/posts");
-    const body = await response.json();
-
-    if (response.status !== 200) throw Error(body.message);
-    return body;
-  };
   render() {
     return (
       <div>
@@ -34,8 +26,8 @@ class PostsPage extends Component {
         <div className="container">
           <div className="row">
             <div className="col-sm-9">
-              {preload.posts.map((post, index) => (
-                <Post {...post} key={index} />
+              {this.state.posts.map((post, index) => (
+                <Post {...post} key={post._id} />
               ))}
             </div>
             <div className="col-sm-3">

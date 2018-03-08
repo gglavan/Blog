@@ -8,13 +8,26 @@ const port = process.env.PORT || 5000;
 
 mongoose.connect("mongodb://localhost/mydb");
 
+const postsRoutes = require("./routes/posts");
+
 app.use(logger("dev"));
+app.use("/uploads", express.static("uploads"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const postController = require("./controllers/post");
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+    return res.status(200).json({});
+  }
+  next();
+});
 
-app.get("/api/posts", postController.getPosts);
-app.post("/api/posts", postController.savePost);
+app.use("/api/posts", postsRoutes);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

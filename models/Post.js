@@ -3,9 +3,10 @@ const mongoose = require("mongoose");
 const postSchema = new mongoose.Schema({
   category: String,
   title: String,
-  body: String,
+  content: String,
   image: String,
-  date: Date
+  author: String,
+  date: String
 });
 
 const Post = mongoose.model("Post", postSchema);
