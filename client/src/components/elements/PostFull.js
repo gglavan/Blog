@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import "../styles/Post.css";
 
-class Post extends Component {
+class PostFull extends Component {
   render() {
     return (
       <div className="wrapper">
@@ -10,14 +9,8 @@ class Post extends Component {
         <div className="container">
           <div className="post-category">{this.props.category}</div>
           <div className="post-title">{this.props.title}</div>
-          <div className="post-content">
-            {this.props.content.substr(0, 1000) + "..."}
-          </div>
-          <div className="post-button">
-            <Link to={`/posts/${this.props._id}`}>
-              <button>continue reading</button>
-            </Link>
-          </div>
+          <div className="post-content">{this.props.content}</div>
+          <div className="post-button" />
           <div className="post-date">
             By <span>{this.props.author}</span> on {this.props.date}
           </div>
@@ -27,4 +20,4 @@ class Post extends Component {
   }
 }
 
-export default Post;
+export default PostFull;

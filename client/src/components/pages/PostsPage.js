@@ -16,6 +16,7 @@ class PostsPage extends Component {
       .then(res => res.json())
       .then(posts => {
         this.setState({ posts });
+        console.log(this.state)
       });
   }
 

@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
+const path = require("path");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -11,9 +12,10 @@ mongoose.connect("mongodb://localhost/mydb");
 const postsRoutes = require("./routes/posts");
 
 app.use(logger("dev"));
-app.use("/uploads", express.static("uploads"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use("/uploads", express.static("uploads"));
+app.use("/posts/uploads", express.static("uploads"));
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");

@@ -66,6 +66,7 @@ class NewPostForm extends Component {
               value={this.state.title}
               onChange={this.handleTitleChange}
               name="title"
+              required
             />
           </div>
           <div className="form-group">
@@ -77,10 +78,11 @@ class NewPostForm extends Component {
               value={this.state.content}
               onChange={this.handleContentChange}
               name="content"
+              required
             />
           </div>
           <div className="form-group">
-            <label htmlFor="file">Choose your picture:</label>
+            <label htmlFor="image">Choose your picture:</label>
             <input
               type="file"
               className="form-control-file"
@@ -88,6 +90,7 @@ class NewPostForm extends Component {
               value={this.state.image}
               onChange={this.handleImageChange}
               name="image"
+              required
             />
           </div>
           <div className="form-group">
@@ -100,11 +103,12 @@ class NewPostForm extends Component {
               value={this.state.author}
               onChange={this.handleAuthorChange}
               name="author"
+              required
             />
           </div>
           <button
             type="submit"
-            className="btn btn-primary"
+            className="btn btn-danger btn-block"
             onClick={this.handlePost}
           >
             Submit
