@@ -11,7 +11,7 @@ class Post extends Component {
           <div className="post-category">{this.props.category}</div>
           <div className="post-title">{this.props.title}</div>
           <div className="post-content">
-            {this.props.content.substr(0, 1000) + "..."}
+            {this.props.content && this.props.content.substr(0, 1000) + "..."}
           </div>
           <div className="post-button">
             <Link to={`/posts/${this.props._id}`}>

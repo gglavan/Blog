@@ -13,6 +13,17 @@ class PostFull extends Component {
           <div className="post-button" />
           <div className="post-date">
             By <span>{this.props.author}</span> on {this.props.date}
+            <form
+              name="_method"
+              encType="application/x-www-form-urlencoded"
+              className="float-right"
+              method="POST"
+              action={`/api/posts/${this.props._id}?_method=DELETE`}
+            >
+              <button className="btn btn-sm btn-danger" type="submit">
+                Delete
+              </button>
+            </form>
           </div>
         </div>
       </div>

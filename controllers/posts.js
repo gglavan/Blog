@@ -66,9 +66,7 @@ exports.deletePost = (req, res, next) => {
   Post.remove({ _id: id })
     .exec()
     .then(result => {
-      res.status(200).json({
-        message: "Post deleted"
-      });
+      res.redirect("/posts");
     })
     .catch(err => {
       console.log(err);

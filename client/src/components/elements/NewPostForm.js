@@ -53,7 +53,11 @@ class NewPostForm extends Component {
               <option>Technology</option>
               <option>Music</option>
               <option>Space</option>
+              <option>Politics</option>
               <option>Nature</option>
+              <option>Sports</option>
+              <option>Media</option>
+              <option>Government</option>
             </select>
           </div>
           <div className="form-group">
