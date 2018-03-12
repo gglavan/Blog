@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SocialMedia from "./SocialMedia";
 import "./Navbar.css";
 
 const Navbar = () => (
@@ -12,26 +13,7 @@ const Navbar = () => (
         <Link to="/about">About</Link>
         <Link to="/contacts">Contacts</Link>
       </div>
-      <div className="nav-block-right">
-        <a href="_blank">
-          <i className="fab fa-facebook-f" />
-        </a>
-        <a href="_blank">
-          <i className="fab fa-twitter" />
-        </a>
-        <a href="_blank">
-          <i className="fab fa-instagram" />
-        </a>
-        <a href="_blank">
-          <i className="fab fa-pinterest" />
-        </a>
-        <a href="_blank">
-          <i className="fab fa-google-plus-g" />
-        </a>
-        <a href="_blank">
-          <i className="fas fa-search" />
-        </a>
-      </div>
+      <SocialMedia />
     </div>
   </div>
 );
