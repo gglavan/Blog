@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import DemoPost from "./DemoPost";
-import "../styles/PopularPosts.css";
+import "./PopularPosts.css";
 
 class PopularPosts extends Component {
   render() {

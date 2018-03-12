@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Navbar from "../elements/Navbar";
-import Post from "../elements/Post";
-import Newsletter from "../elements/Newsletter";
-import PopularPosts from "../elements/PopularPosts";
-import Footer from "../elements/Footer";
+import Navbar from "../commons/Navbar";
+import Post from "../commons/Post";
+import Newsletter from "../commons/Newsletter";
+import PopularPosts from "../commons/PopularPosts";
+import Footer from "../commons/Footer";
 import preload from "../../data/data.json";
 
 class PostsPage extends Component {

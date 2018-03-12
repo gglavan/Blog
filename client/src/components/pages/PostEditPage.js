@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Navbar from "../elements/Navbar";
-import Newsletter from "../elements/Newsletter";
-import PopularPosts from "../elements/PopularPosts";
-import Footer from "../elements/Footer";
-import PostEditForm from "../elements/PostEditForm";
+import Navbar from "../commons/Navbar";
+import Newsletter from "../commons/Newsletter";
+import PopularPosts from "../commons/PopularPosts";
+import Footer from "../commons/Footer";
+import PostEditForm from "../commons/PostEditForm";
 import preload from "../../data/data.json";
 
 class PostEditPage extends Component {

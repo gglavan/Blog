@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../elements/Navbar";
-import "../styles/HomePage.css";
+import Navbar from "../commons/Navbar";
+import "./HomePage.css";
 
 const HomePage = () => (
   <div>

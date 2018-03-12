@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../styles/NewPostForm.css";
+import "./NewPostForm.css";
 
 class NewPostForm extends Component {
   state = {

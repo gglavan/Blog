@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Newsletter.css";
+import "./Newsletter.css";
 
 const Newsletter = () => (
   <div className="wrapper container">
