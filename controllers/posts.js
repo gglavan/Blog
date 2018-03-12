@@ -34,7 +34,6 @@ exports.getSinglePost = (req, res, next) => {
 };
 
 exports.createPost = (req, res, next) => {
-  console.log(req.body);
   const dateOptions = {
     hour12: false,
     hour: "numeric",
@@ -44,14 +43,17 @@ exports.createPost = (req, res, next) => {
     month: "long",
     day: "numeric"
   };
-  const newPost = new Post({
+  const post = {
     category: req.body.category,
     title: req.body.title,
     content: req.body.content,
     image: req.file.path,
     author: req.body.author,
     date: new Date().toLocaleDateString("en-US", dateOptions)
-  });
+  };
+  const newPost = new Post(post);
+  // const err = newPost.joiValidate(post);
+  // if (err != null) throw err;
   newPost
     .save()
     .then(result => res.redirect("/posts"))
@@ -79,12 +81,11 @@ exports.deletePost = (req, res, next) => {
 
 exports.updatePost = (req, res, next) => {
   const id = req.params.postId;
+  req.body["image"] = req.file.path;
   Post.update({ _id: id }, { $set: req.body })
     .exec()
     .then(result => {
-      res.status(200).json({
-        message: "Post updated"
-      });
+      res.redirect("/posts");
     })
     .catch(err => {
       console.log(err);

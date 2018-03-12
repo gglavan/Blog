@@ -51,6 +51,7 @@ class PostEditForm extends Component {
           name="_method"
           method="post"
           action={`/api/posts/${this.props._id}?_method=PATCH`}
+          encType="multipart/form-data"
         >
           <div className="form-group">
             <label htmlFor="title">Category:</label>
@@ -98,9 +99,7 @@ class PostEditForm extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="image">
-              Choose another picture: ({this.state.image})
-            </label>
+            <label htmlFor="image">Choose another picture:</label>
             <input
               type="file"
               className="form-control-file"

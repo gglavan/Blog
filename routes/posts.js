@@ -33,13 +33,9 @@ const upload = multer({
 });
 
 router.get("/", PostsController.getAllPosts);
-
-router.post("/", upload.single("image"), PostsController.createPost);
-
 router.get("/:postId", PostsController.getSinglePost);
-
-router.patch("/:postId", PostsController.updatePost);
-
+router.post("/", upload.single("image"), PostsController.createPost);
+router.patch("/:postId", upload.single("image"), PostsController.updatePost);
 router.delete("/:postId", PostsController.deletePost);
 
 module.exports = router;

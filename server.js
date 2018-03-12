@@ -8,7 +8,7 @@ const methodOverride = require("method-override");
 const app = express();
 const port = process.env.PORT || 5000;
 
-mongoose.connect("mongodb://localhost/mydb");
+mongoose.connect("mongodb://admin:admin@ds113019.mlab.com:13019/react-blog-db");
 
 const postsRoutes = require("./routes/posts");
 
