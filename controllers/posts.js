@@ -34,6 +34,7 @@ exports.getSinglePost = (req, res, next) => {
 };
 
 exports.createPost = (req, res, next) => {
+  console.log(req.body);
   const dateOptions = {
     hour12: false,
     hour: "numeric",
@@ -67,6 +68,23 @@ exports.deletePost = (req, res, next) => {
     .exec()
     .then(result => {
       res.redirect("/posts");
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
+};
+
+exports.updatePost = (req, res, next) => {
+  const id = req.params.postId;
+  Post.update({ _id: id }, { $set: req.body })
+    .exec()
+    .then(result => {
+      res.status(200).json({
+        message: "Post updated"
+      });
     })
     .catch(err => {
       console.log(err);

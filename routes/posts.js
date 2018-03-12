@@ -13,7 +13,6 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-  // reject a file
   if (
     file.mimetype === "image/jpeg" ||
     file.mimetype === "image/jpg" ||
@@ -39,7 +38,7 @@ router.post("/", upload.single("image"), PostsController.createPost);
 
 router.get("/:postId", PostsController.getSinglePost);
 
-// router.patch("/:productId", checkAuth, ProductsController.products_update_product);
+router.patch("/:postId", PostsController.updatePost);
 
 router.delete("/:postId", PostsController.deletePost);
 

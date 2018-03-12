@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "../styles/Post.css";
 
 class PostFull extends Component {
@@ -24,6 +25,14 @@ class PostFull extends Component {
                 Delete
               </button>
             </form>
+            <button className="btn btn-info btn-sm float-right mr-2">
+              <Link
+                style={{ textDecoration: "none", color: "#fff" }}
+                to={`/posts/edit/${this.props._id}`}
+              >
+                Edit
+              </Link>
+            </button>
           </div>
         </div>
       </div>
