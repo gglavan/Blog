@@ -6,14 +6,14 @@ class SocialMedia extends Component {
     ["https://twitter.com", "fab fa-twitter"],
     ["https://instagram.com", "fab fa-instagram"],
     ["https://pinterest.com", "fab fa-pinterest"],
-    ["https://facebook.com", "fab fa-google-plus-g"]
+    ["https://plus.google.com", "fab fa-google-plus-g"]
   ];
   render() {
     return (
       <div className="nav-block-right">
         {this.socialMediaLinks.map(link => {
           return (
-            <a href={link[0]}>
+            <a href={link[0]} key={link[0]}>
               <i className={link[1]} />
             </a>
           );

@@ -22,7 +22,7 @@ class PostEditPage extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
         <div className="container">
           <div className="row">
             <div className="col-sm-9">

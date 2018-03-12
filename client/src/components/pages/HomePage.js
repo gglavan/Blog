@@ -5,7 +5,7 @@ import "./HomePage.css";
 
 const HomePage = () => (
   <div>
-    <Navbar />
+    {/* <Navbar /> */}
     <div className="wallpaper" />
     <div className="greeting-block">
       <div className="greeting-primary">Welcome To My Website</div>
