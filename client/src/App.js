@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { Route, Switch } from "react-router-dom";
 import HomePage from "./components/pages/HomePage";
 import PostsPage from "./components/pages/PostsPage";
@@ -9,7 +10,6 @@ import AboutPage from "./components/pages/AboutPage";
 import ContactsPage from "./components/pages/ContactsPage";
 import NotFoundPage from "./components/pages/NotFoundPage";
 import Navbar from "./components/commons/Navbar";
-import styled from "styled-components";
 import "./App.css";
 
 const Wrapper = styled.div`
@@ -21,8 +21,8 @@ const App = () => (
     <Navbar />
     <Switch>
       <Route path="/" exact component={HomePage} />
-      <Route path="/about" exact component={AboutPage} />
-      <Route path="/contacts" exact component={ContactsPage} />
+      <Route path="/about" component={AboutPage} />
+      <Route path="/contacts" component={ContactsPage} />
       <Route path="/posts" exact component={PostsPage} />
       <Route path="/posts/:id" exact component={PostDetailsPage} />
       <Route path="/posts/edit/:id" exact component={PostEditPage} />

@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import axios from "axios";
+import PropTypes from "prop-types";
 import PostFull from "../commons/PostFull";
 import Newsletter from "../commons/Newsletter";
 import PopularPosts from "../commons/PopularPosts";
 import Footer from "../commons/Footer";
 import preload from "../../data/data.json";
-import axios from "axios";
 
 class PostDetailsPage extends Component {
   state = {
@@ -42,5 +43,9 @@ class PostDetailsPage extends Component {
     );
   }
 }
+
+// PostDetailsPage.propTypes = {
+//   match: PropTypes.shape({})
+// };
 
 export default PostDetailsPage;
