@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Navbar from "../commons/Navbar";
 import Newsletter from "../commons/Newsletter";
 import PopularPosts from "../commons/PopularPosts";
 import Footer from "../commons/Footer";
 import PostEditForm from "../commons/PostEditForm";
 import preload from "../../data/data.json";
+import axios from "axios";
 
 class PostEditPage extends Component {
   state = {
@@ -13,16 +13,18 @@ class PostEditPage extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
-    fetch(`/api/posts/${this.props.match.params.id}`)
-      .then(res => res.json())
-      .then(post => {
-        this.setState({ post });
+    axios
+      .get(`/api/posts/${this.props.match.params.id}`)
+      .then(response => {
+        this.setState({ post: response.data });
+      })
+      .catch(error => {
+        console.log(error);
       });
   }
   render() {
     return (
       <div>
-        {/* <Navbar /> */}
         <div className="container">
           <div className="row">
             <div className="col-sm-9">

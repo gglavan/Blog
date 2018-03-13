@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import axios from "axios";
 import "./NewPostForm.css";
 
 class NewPostForm extends Component {
@@ -6,7 +8,7 @@ class NewPostForm extends Component {
     category: "",
     title: "",
     content: "",
-    image: "",
+    image: null,
     author: ""
   };
 
@@ -23,28 +25,41 @@ class NewPostForm extends Component {
   };
 
   handleImageChange = e => {
-    this.setState({ image: e.target.value });
+    this.setState({ image: e.target.files[0] });
   };
 
   handleAuthorChange = e => {
     this.setState({ author: e.target.value });
   };
 
-  handlePost = e => {
-    // e.preventDefault();
-    console.log(this.state);
+  handleSubmit = e => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("category", this.state.category);
+    formData.append("title", this.state.title);
+    formData.append("content", this.state.content);
+    formData.append("image", this.state.image);
+    formData.append("author", this.state.author);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data"
+      }
+    };
+    axios.post("/api/posts", formData, config).then(response => {
+      console.log(response);
+    });
+    this.props.history.push("/posts");
   };
-
   render() {
     return (
       <div className="wrapper container">
         <h6>Share your feelings!</h6>
-        <form method="post" action="/api/posts" encType="multipart/form-data">
+        <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="title">Category:</label>
             <select
               className="form-control"
-              id="exampleSelect1"
+              id="select"
               value={this.state.category}
               onChange={this.handleCategoryChange}
               name="category"
@@ -91,7 +106,6 @@ class NewPostForm extends Component {
               type="file"
               className="form-control-file"
               id="image"
-              value={this.state.image}
               onChange={this.handleImageChange}
               name="image"
               required
@@ -110,11 +124,7 @@ class NewPostForm extends Component {
               required
             />
           </div>
-          <button
-            type="submit"
-            className="btn btn-danger btn-block"
-            onClick={this.handlePost}
-          >
+          <button type="submit" className="btn btn-danger btn-block">
             Submit
           </button>
         </form>
@@ -122,4 +132,4 @@ class NewPostForm extends Component {
     );
   }
 }
-export default NewPostForm;
+export default withRouter(NewPostForm);

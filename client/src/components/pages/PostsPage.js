@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Navbar from "../commons/Navbar";
 import Post from "../commons/Post";
 import Newsletter from "../commons/Newsletter";
 import PopularPosts from "../commons/PopularPosts";
 import Footer from "../commons/Footer";
 import preload from "../../data/data.json";
+import axios from "axios";
 
 class PostsPage extends Component {
   state = {
@@ -12,18 +12,19 @@ class PostsPage extends Component {
   };
 
   componentDidMount() {
-    fetch("/api/posts")
-      .then(res => res.json())
-      .then(posts => {
-        this.setState({ posts });
-        console.log(this.state);
+    axios
+      .get("/api/posts")
+      .then(response => {
+        this.setState({ posts: response.data });
+      })
+      .catch(error => {
+        console.log(error);
       });
   }
 
   render() {
     return (
       <div>
-        {/* <Navbar /> */}
         <div className="container">
           <div className="row">
             <div className="col-sm-9">

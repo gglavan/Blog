@@ -43,6 +43,7 @@ exports.createPost = (req, res, next) => {
     month: "long",
     day: "numeric"
   };
+  console.log(req.body);
   const post = {
     category: req.body.category,
     title: req.body.title,
@@ -52,8 +53,9 @@ exports.createPost = (req, res, next) => {
     date: new Date().toLocaleDateString("en-US", dateOptions)
   };
   const newPost = new Post(post);
+  // console.log(newPost);
   // const err = newPost.joiValidate(post);
-  // if (err != null) throw err;
+  // if (err) throw err;
   newPost
     .save()
     .then(result => res.redirect("/posts"))

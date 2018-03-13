@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import axios from "axios";
 import "./NewPostForm.css";
 
 class PostEditForm extends Component {
@@ -6,7 +8,7 @@ class PostEditForm extends Component {
     category: "",
     title: "",
     content: "",
-    image: "",
+    image: null,
     author: ""
   };
 
@@ -31,28 +33,39 @@ class PostEditForm extends Component {
   };
 
   handleImageChange = e => {
-    this.setState({ image: e.target.value });
+    this.setState({ image: e.target.files[0] });
   };
 
   handleAuthorChange = e => {
     this.setState({ author: e.target.value });
   };
 
-  handlePost = e => {
-    // e.preventDefault();
-    console.log(this.state);
+  handleSubmit = e => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("category", this.state.category);
+    formData.append("title", this.state.title);
+    formData.append("content", this.state.content);
+    formData.append("image", this.state.image);
+    formData.append("author", this.state.author);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data"
+      }
+    };
+    axios
+      .patch(`/api/posts/${this.props._id}`, formData, config)
+      .then(response => {
+        console.log(response);
+      });
+    this.props.history.push("/posts");
   };
 
   render() {
     return (
       <div className="wrapper container">
         <h6>Edit your post!</h6>
-        <form
-          name="_method"
-          method="post"
-          action={`/api/posts/${this.props._id}?_method=PATCH`}
-          encType="multipart/form-data"
-        >
+        <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="title">Category:</label>
             <select
@@ -122,11 +135,7 @@ class PostEditForm extends Component {
               required
             />
           </div>
-          <button
-            type="submit"
-            className="btn btn-danger btn-block"
-            onClick={this.handlePost}
-          >
+          <button type="submit" className="btn btn-danger btn-block">
             Save Changes
           </button>
         </form>
@@ -134,4 +143,4 @@ class PostEditForm extends Component {
     );
   }
 }
-export default PostEditForm;
+export default withRouter(PostEditForm);

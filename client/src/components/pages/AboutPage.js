@@ -1,13 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "./HomePage.css";
 
-const HomePage = () => (
+const AboutPage = () => (
   <div>
-    <div className="wallpaper" />
     <div className="greeting-block">
-      <div className="greeting-primary">Welcome To My Website</div>
-      <div className="greeting-secondary">
+      <div className="">About Page</div>
+      <div className="">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam
         necessitatibus optio quae eveniet inventore totam commodi tenetur quo
         quibusdam facilis exercitationem similique eum mollitia temporibus sunt
@@ -15,11 +14,8 @@ const HomePage = () => (
         placeat magni qui. Labore dolor ipsum exercitationem. Blanditiis dicta
         non repellat consequatur. Distinctio a at iste voluptatem?
       </div>
-      <Link to="/posts">
-        <button className="greeting-button">Enter</button>
-      </Link>
     </div>
   </div>
 );
 
-export default HomePage;
+export default AboutPage;

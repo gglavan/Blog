@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Navbar from "../commons/Navbar";
 import Newsletter from "../commons/Newsletter";
 import PopularPosts from "../commons/PopularPosts";
 import Footer from "../commons/Footer";
@@ -10,7 +9,6 @@ class PostDetailsPage extends Component {
   render() {
     return (
       <div>
-        {/* <Navbar /> */}
         <div className="container">
           <div className="row">
             <div className="col-sm-9">

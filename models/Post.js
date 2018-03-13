@@ -11,31 +11,32 @@ const postSchema = new mongoose.Schema({
 
 postSchema.methods.joiValidate = function(post) {
   const Joi = require("joi");
-  const schema = Joi.object().keys({
-    category: Joi.string()
-      .min(3)
-      .max(50)
-      .required(),
-    title: Joi.string()
-      .min(3)
-      .max(100)
-      .regex(/[a-zA-Z0-9]{3,100}/)
-      .required(),
-    content: Joi.string()
-      .min(100)
-      .max(1500)
-      .required(),
-    image: Joi.string()
-      .min(3)
-      .max(50)
-      .required(),
-    author: Joi.string()
-      .min(2)
-      .max(100)
-      .required(),
-    date: Joi.string(),
-    _id: Joi.object()
-  });
+  const schema = Joi.object()
+    .keys({
+      category: Joi.string()
+        .min(3)
+        .max(50)
+        .required(),
+      title: Joi.string()
+        .min(3)
+        .max(100)
+        .regex(/[a-zA-Z0-9]{3,100}/)
+        .required(),
+      content: Joi.string()
+        .min(100)
+        .max(1500)
+        .required(),
+      image: Joi.string()
+        .min(3)
+        .max(50)
+        .required(),
+      author: Joi.string()
+        .min(2)
+        .max(100)
+        .required(),
+      date: Joi.string()
+    })
+    .without();
   return Joi.validate(post, schema);
 };
 
