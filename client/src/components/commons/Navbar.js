@@ -4,7 +4,7 @@ import SocialMedia from "./SocialMedia";
 import "./Navbar.css";
 
 const Navbar = () => (
-  <div className="nav">
+  <div className="nav" id="navbar">
     <div className="container">
       <div className="nav-block-left">
         <Link to="/">Home</Link>
