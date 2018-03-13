@@ -1,8 +1,22 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import history from "../../history";
+import axios from "axios";
 import "./Post.css";
 
 class PostFull extends Component {
+  handleSubmit = e => {
+    e.preventDefault();
+    let ans = window.confirm("Are you sure?");
+    if (ans) {
+      axios
+        .delete(`/api/posts/${this.props._id}`)
+        .then(response => console.log(response))
+        .catch(err => console.log(err));
+      history.push("/posts");
+      history.go("/posts");
+    }
+  };
   render() {
     return (
       <div className="wrapper">
@@ -14,13 +28,7 @@ class PostFull extends Component {
           <div className="post-button" />
           <div className="post-date">
             By <span>{this.props.author}</span> on {this.props.date}
-            <form
-              name="_method"
-              encType="application/x-www-form-urlencoded"
-              className="float-right"
-              method="POST"
-              action={`/api/posts/${this.props._id}?_method=DELETE`}
-            >
+            <form onSubmit={this.handleSubmit} className="float-right">
               <button className="btn btn-sm btn-danger" type="submit">
                 Delete
               </button>

@@ -58,7 +58,7 @@ exports.createPost = (req, res, next) => {
   // if (err) throw err;
   newPost
     .save()
-    .then(result => res.redirect("/posts"))
+    .then(result => console.log("Post created"))
     .catch(err => {
       res.status(500).json({
         error: err
@@ -71,7 +71,7 @@ exports.deletePost = (req, res, next) => {
   Post.remove({ _id: id })
     .exec()
     .then(result => {
-      res.redirect("/posts");
+      console.log("Post deleted");
     })
     .catch(err => {
       console.log(err);
@@ -87,7 +87,7 @@ exports.updatePost = (req, res, next) => {
   Post.update({ _id: id }, { $set: req.body })
     .exec()
     .then(result => {
-      res.redirect("/posts");
+      console.log(result);
     })
     .catch(err => {
       console.log(err);

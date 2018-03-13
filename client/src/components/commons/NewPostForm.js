@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import axios from "axios";
+import history from "../../history";
+
 import "./NewPostForm.css";
 
 class NewPostForm extends Component {
@@ -45,10 +46,12 @@ class NewPostForm extends Component {
         "content-type": "multipart/form-data"
       }
     };
-    axios.post("/api/posts", formData, config).then(response => {
-      console.log(response);
-    });
-    this.props.history.push("/posts");
+    axios
+      .post("/api/posts", formData, config)
+      .then(response => console.log(response))
+      .catch(err => console.log(err));
+    history.push("/posts");
+    history.go("/posts");
   };
   render() {
     return (
@@ -132,4 +135,4 @@ class NewPostForm extends Component {
     );
   }
 }
-export default withRouter(NewPostForm);
+export default NewPostForm;

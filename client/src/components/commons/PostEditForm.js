@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import axios from "axios";
+import history from "../../history";
 import "./NewPostForm.css";
 
 class PostEditForm extends Component {
@@ -57,8 +57,10 @@ class PostEditForm extends Component {
       .patch(`/api/posts/${this.props._id}`, formData, config)
       .then(response => {
         console.log(response);
-      });
-    this.props.history.push("/posts");
+      })
+      .catch(err => console.log(err));
+    history.push("/posts");
+    history.go("/posts");
   };
 
   render() {
@@ -67,10 +69,10 @@ class PostEditForm extends Component {
         <h6>Edit your post!</h6>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <label htmlFor="title">Category:</label>
+            <label htmlFor="category">Category:</label>
             <select
               className="form-control"
-              id="exampleSelect1"
+              id="category"
               value={this.state.category}
               onChange={this.handleCategoryChange}
               name="category"
@@ -143,4 +145,4 @@ class PostEditForm extends Component {
     );
   }
 }
-export default withRouter(PostEditForm);
+export default PostEditForm;
