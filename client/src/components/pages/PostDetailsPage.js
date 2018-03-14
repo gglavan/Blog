@@ -44,8 +44,12 @@ class PostDetailsPage extends Component {
   }
 }
 
-// PostDetailsPage.propTypes = {
-//   match: PropTypes.shape({})
-// };
+PostDetailsPage.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired
+    }).isRequired
+  }).isRequired
+};
 
 export default PostDetailsPage;

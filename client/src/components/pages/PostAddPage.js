@@ -1,29 +1,25 @@
-import React, { Component } from "react";
+import React from "react";
 import Newsletter from "../commons/Newsletter";
 import PopularPosts from "../commons/PopularPosts";
 import Footer from "../commons/Footer";
 import NewPostForm from "../commons/NewPostForm";
 import preload from "../../data/data.json";
 
-class PostDetailsPage extends Component {
-  render() {
-    return (
-      <div>
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-9">
-              <NewPostForm />
-            </div>
-            <div className="col-sm-3">
-              <Newsletter />
-              <PopularPosts popular={preload.popular} />
-            </div>
-          </div>
+const PostDetailsPage = () => (
+  <div>
+    <div className="container">
+      <div className="row">
+        <div className="col-sm-9">
+          <NewPostForm />
         </div>
-        <Footer />
+        <div className="col-sm-3">
+          <Newsletter />
+          <PopularPosts popular={preload.popular} />
+        </div>
       </div>
-    );
-  }
-}
+    </div>
+    <Footer />
+  </div>
+);
 
 export default PostDetailsPage;

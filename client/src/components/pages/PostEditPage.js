@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import axios from "axios";
+import PropTypes from "prop-types";
 import Newsletter from "../commons/Newsletter";
 import PopularPosts from "../commons/PopularPosts";
 import Footer from "../commons/Footer";
 import PostEditForm from "../commons/PostEditForm";
 import preload from "../../data/data.json";
-import axios from "axios";
 
 class PostEditPage extends Component {
   state = {
@@ -41,5 +42,13 @@ class PostEditPage extends Component {
     );
   }
 }
+
+PostEditPage.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired
+    }).isRequired
+  }).isRequired
+};
 
 export default PostEditPage;

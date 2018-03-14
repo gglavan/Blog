@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import history from "../../history";
+import PropTypes from "prop-types";
 import axios from "axios";
+import history from "../../history";
 import "./Post.css";
 
 class PostFull extends Component {
   handleSubmit = e => {
     e.preventDefault();
-    let ans = window.confirm("Are you sure?");
+    const ans = window.confirm("Are you sure?");
     if (ans) {
       axios
         .delete(`/api/posts/${this.props._id}`)
@@ -47,5 +48,15 @@ class PostFull extends Component {
     );
   }
 }
+
+PostFull.propTypes = {
+  image: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  _id: PropTypes.string.isRequired
+};
 
 export default PostFull;

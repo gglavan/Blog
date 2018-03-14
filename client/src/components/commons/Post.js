@@ -30,7 +30,8 @@ Post.propTypes = {
   content: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired
+  author: PropTypes.string.isRequired,
+  _id: PropTypes.string.isRequired
 };
 
 export default Post;

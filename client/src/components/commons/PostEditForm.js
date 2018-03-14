@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 import history from "../../history";
 import "./NewPostForm.css";
 
@@ -145,4 +146,14 @@ class PostEditForm extends Component {
     );
   }
 }
+
+PostEditForm.propTypes = {
+  image: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  _id: PropTypes.string.isRequired
+};
+
 export default PostEditForm;
