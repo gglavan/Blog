@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, Container, Dimmer, Loader } from "semantic-ui-react";
+import { Grid, Container, Dimmer, Loader, Message } from "semantic-ui-react";
 import PropTypes from "prop-types";
 import Post from "../commons/Post";
 import Newsletter from "../commons/Newsletter";
@@ -16,7 +16,14 @@ class PostsPage extends Component {
 
   render() {
     if (this.props.hasErrored) {
-      return <p>Sorry! There was an error loading the items</p>;
+      return (
+        <Message negative>
+          <Message.Header>
+            Sorry! There was an error loading the posts
+          </Message.Header>
+          <p>Please try again later.</p>
+        </Message>
+      );
     }
 
     return (
@@ -33,7 +40,7 @@ class PostsPage extends Component {
                   this.props.posts.map(post => (
                     <Post {...post} key={post._id} />
                   ))
-                )};
+                )}
               </Grid.Column>
               <Grid.Column width={4}>
                 <Newsletter />
@@ -60,8 +67,8 @@ const mapDispatchToProps = dispatch => ({
 
 PostsPage.propTypes = {
   fetchData: PropTypes.func.isRequired,
-  hasErrored: PropTypes.func.isRequired,
-  isLoading: PropTypes.func.isRequired,
+  hasErrored: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   posts: PropTypes.arrayOf({}).isRequired
 };
 

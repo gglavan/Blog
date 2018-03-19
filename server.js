@@ -10,6 +10,7 @@ const port = process.env.PORT || 5000;
 mongoose.connect("mongodb://admin:admin@ds113019.mlab.com:13019/react-blog-db");
 
 const postsRoutes = require("./routes/posts");
+const usersRoutes = require("./routes/users");
 
 app.use(logger("dev"));
 app.use(bodyParser.json());
@@ -31,5 +32,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/posts", postsRoutes);
+app.use("/api/users", usersRoutes);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
