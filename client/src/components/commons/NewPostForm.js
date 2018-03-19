@@ -1,8 +1,32 @@
 import React, { Component } from "react";
 import axios from "axios";
+import styled from "react-emotion";
+import {
+  Icon,
+  Header,
+  Segment,
+  Container,
+  TextArea,
+  Button,
+  Form
+} from "semantic-ui-react";
 import history from "../../history";
 
-import "./NewPostForm.css";
+const PostWrapper = styled("div")`
+  margin-top: 50px;
+`;
+
+const options = [
+  { text: "Travel", value: "travel" },
+  { text: "Technology", value: "technology" },
+  { text: "Music", value: "music" },
+  { text: "Space", value: "space" },
+  { text: "Politics", value: "politics" },
+  { text: "Nature", value: "nature" },
+  { text: "Sports", value: "sports" },
+  { text: "Media", value: "media" },
+  { text: "Government", value: "government" }
+];
 
 class NewPostForm extends Component {
   state = {
@@ -55,83 +79,81 @@ class NewPostForm extends Component {
   };
   render() {
     return (
-      <div className="wrapper container">
-        <h6>Share your feelings!</h6>
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="title">Category:</label>
-            <select
-              className="form-control"
-              id="select"
-              value={this.state.category}
-              onChange={this.handleCategoryChange}
-              name="category"
-            >
-              <option>Travel</option>
-              <option>Technology</option>
-              <option>Music</option>
-              <option>Space</option>
-              <option>Politics</option>
-              <option>Nature</option>
-              <option>Sports</option>
-              <option>Media</option>
-              <option>Government</option>
-            </select>
-          </div>
-          <div className="form-group">
-            <label htmlFor="title">Title:</label>
-            <input
-              type="text"
-              className="form-control"
-              id="title"
-              placeholder="Enter your title"
-              value={this.state.title}
-              onChange={this.handleTitleChange}
-              name="title"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="content">Post content:</label>
-            <textarea
-              className="form-control"
-              id="content"
-              rows="10"
-              value={this.state.content}
-              onChange={this.handleContentChange}
-              name="content"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="image">Choose your picture:</label>
-            <input
-              type="file"
-              className="form-control-file"
-              id="image"
-              onChange={this.handleImageChange}
-              name="image"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="author">Author:</label>
-            <input
-              type="text"
-              className="form-control"
-              id="author"
-              placeholder="Enter your name"
-              value={this.state.author}
-              onChange={this.handleAuthorChange}
-              name="author"
-              required
-            />
-          </div>
-          <button type="submit" className="btn btn-danger btn-block">
-            Submit
-          </button>
-        </form>
-      </div>
+      <PostWrapper>
+        <Segment>
+          <Header as="h4" textAlign="center">
+            SHARE YOUR FEELINGS!
+          </Header>
+          <Container>
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Select
+                fluid
+                label="Category"
+                id="category"
+                value={this.state.category}
+                onChange={this.handleCategoryChange}
+                name="category"
+                options={options}
+                placeholder="Category"
+                required
+              />
+              <Form.Field>
+                <Form.Input
+                  id="title"
+                  label="Title"
+                  placeholder="Enter your title"
+                  value={this.state.title}
+                  onChange={this.handleTitleChange}
+                  name="title"
+                  required
+                />
+              </Form.Field>
+              <Form.Field
+                control={TextArea}
+                label="About"
+                id="content"
+                rows="10"
+                value={this.state.content}
+                onChange={this.handleContentChange}
+                name="content"
+                required
+                placeholder="Tell us more about you..."
+              />
+              <Form.Field>
+                <label htmlFor="image">Choose another picture:</label>
+                <Button
+                  onClick={() => document.getElementById("image").click()}
+                >
+                  <Icon name="file" />
+                  Open File
+                </Button>
+                <Form.Input
+                  type="file"
+                  id="image"
+                  name="image"
+                  style={{ display: "none" }}
+                  onChange={this.handleImageChange}
+                />
+              </Form.Field>
+              <Form.Field>
+                <Form.Input
+                  type="text"
+                  label="Author"
+                  id="author"
+                  placeholder="Enter your name"
+                  value={this.state.author}
+                  onChange={this.handleAuthorChange}
+                  name="author"
+                  required
+                />
+              </Form.Field>
+              <Button color="orange" fluid type="submit">
+                Submit
+              </Button>
+            </Form>
+          </Container>
+        </Segment>
+      </PostWrapper>
     );
   }
 }

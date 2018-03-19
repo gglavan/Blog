@@ -1,50 +1,92 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Image, Icon, Segment, Container, Button } from "semantic-ui-react";
+import styled, { css } from "react-emotion";
 import PropTypes from "prop-types";
 import axios from "axios";
+import ConfirmModal from "./ConfirmModal";
 import history from "../../history";
-import "./Post.css";
+
+const PostWrapper = styled("div")`
+  margin-top: 50px;
+`;
+
+const postCategory = css`
+  margin-top: 20px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-bottom: 10px;
+`;
+
+const postTitle = css`
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 20px;
+  margin-bottom: 10px;
+`;
+
+const postContent = css`
+  font-size: 14px;
+  text-align: justify;
+  padding: 20px;
+}`;
+
+const postDate = css`
+  margin-top: 25px;
+  font-size: 14px;
+  font-style: italic;
+}`;
+
+const alignedVertical = css`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
 
 class PostFull extends Component {
-  handleSubmit = e => {
-    e.preventDefault();
-    const ans = window.confirm("Are you sure?");
-    if (ans) {
-      axios
-        .delete(`/api/posts/${this.props._id}`)
-        .then(response => console.log(response))
-        .catch(err => console.log(err));
-      history.push("/posts");
-      history.go("/posts");
-    }
+  handleDelete = () => {
+    axios
+      .delete(`/api/posts/${this.props._id}`)
+      .then(response => console.log(response))
+      .catch(err => console.log(err));
+    history.push("/posts");
+    history.go("/posts");
   };
   render() {
     return (
-      <div className="wrapper">
-        <img src={this.props.image} alt="Oops!" width="100%" />
-        <div className="container">
-          <div className="post-category">{this.props.category}</div>
-          <div className="post-title">{this.props.title}</div>
-          <div className="post-content">{this.props.content}</div>
-          <div className="post-button" />
-          <div className="post-date">
-            By <span>{this.props.author}</span> on {this.props.date}
-            <form onSubmit={this.handleSubmit} className="float-right">
-              <button className="btn btn-sm btn-danger" type="submit">
-                Delete
-              </button>
-            </form>
-            <button className="btn btn-info btn-sm float-right mr-2">
-              <Link
-                style={{ textDecoration: "none", color: "#fff" }}
-                to={`/posts/edit/${this.props._id}`}
-              >
-                Edit
-              </Link>
-            </button>
-          </div>
-        </div>
-      </div>
+      <PostWrapper>
+        <Segment>
+          <Image src={this.props.image} alt="Oops!" width="100%" />
+          <Container>
+            <div className={`${postCategory} orange`}>
+              {this.props.category}
+            </div>
+            <div className={postTitle}>{this.props.title}</div>
+            <div className={postContent}>{this.props.content}</div>
+            <div className={alignedVertical}>
+              <div className={`${postDate} text-muted`}>
+                By <span className="orange">{this.props.author}</span> on{" "}
+                {this.props.date}
+              </div>
+              <div>
+                <Button
+                  size="tiny"
+                  color="blue"
+                  as={Link}
+                  to={`/posts/edit/${this.props._id}`}
+                >
+                  <Icon name="pencil" />
+                  Edit
+                </Button>
+                <ConfirmModal handleDelete={this.handleDelete} />
+              </div>
+            </div>
+          </Container>
+        </Segment>
+      </PostWrapper>
     );
   }
 }

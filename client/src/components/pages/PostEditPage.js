@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Container, Grid } from "semantic-ui-react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import Newsletter from "../commons/Newsletter";
@@ -26,17 +27,19 @@ class PostEditPage extends Component {
   render() {
     return (
       <div>
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-9">
-              <PostEditForm {...this.state.post} />
-            </div>
-            <div className="col-sm-3">
-              <Newsletter />
-              <PopularPosts popular={preload.popular} />
-            </div>
-          </div>
-        </div>
+        <Container>
+          <Grid stackable columns={2}>
+            <Grid.Row>
+              <Grid.Column width={12}>
+                <PostEditForm {...this.state.post} />
+              </Grid.Column>
+              <Grid.Column width={4}>
+                <Newsletter />
+                <PopularPosts popular={preload.popular} />
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Container>
         <Footer />
       </div>
     );
