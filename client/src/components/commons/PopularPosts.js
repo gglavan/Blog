@@ -1,13 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Segment, Header, Container } from "semantic-ui-react";
 import DemoPost from "./DemoPost";
-import "./PopularPosts.css";
 
 const PopularPosts = props => (
-  <div className="wrapper container">
-    <h6>Popular Posts</h6>
-    {props.popular.map(post => <DemoPost {...post} key={post.date} />)}
-  </div>
+  <Segment>
+    <Container>
+      <Header as="h4" textAlign="center">
+        POPULAR POSTS
+      </Header>
+      {props.popular.map(post => <DemoPost {...post} key={post.date} />)}
+    </Container>
+  </Segment>
 );
 
 PopularPosts.propTypes = {

@@ -1,23 +1,36 @@
 import React from "react";
-import "./Newsletter.css";
+import {
+  Segment,
+  Header,
+  Icon,
+  Input,
+  Container,
+  Button
+} from "semantic-ui-react";
+import styled from "react-emotion";
+
+const PostWrapper = styled("div")`
+  margin-top: 50px;
+`;
 
 const Newsletter = () => (
-  <div className="wrapper container">
-    <h6>Get Newsletter</h6>
-    <form>
-      <div className="form-group">
-        <input
-          type="email"
-          className="form-control"
-          id="email"
-          placeholder="Enter email"
-        />
-      </div>
-      <button className="newsletter-button" type="submit">
-        Subscribe Now
-      </button>
-    </form>
-  </div>
+  <PostWrapper>
+    <Segment>
+      <Container>
+        <Header as="h4" textAlign="center">
+          GET NEWSLETTER
+        </Header>
+        <Input fluid iconPosition="left" placeholder="Email">
+          <Icon name="at" />
+          <input />
+        </Input>
+        <br />
+        <Button color="orange" fluid>
+          Subscribe Now!
+        </Button>
+      </Container>
+    </Segment>
+  </PostWrapper>
 );
 
 export default Newsletter;

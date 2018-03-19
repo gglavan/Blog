@@ -1,24 +1,14 @@
-@font-face {
-  font-family: "Rammetto";
-  src: url("./fonts/RammettoOne-Regular.ttf");
+.orange {
+  color: #e07b53;
 }
 
-@font-face {
-  font-family: "Roboto-Black";
-  src: url("./fonts/Roboto-Black.ttf");
+.text-muted {
+  color: #c3c3c3;
 }
 
-@font-face {
-  font-family: "Roboto-Bold";
-  src: url("./fonts/Roboto-Bold.ttf");
-}
-
-@font-face {
-  font-family: "Roboto-Light";
-  src: url("./fonts/Roboto-Light.ttf");
-}
-
-@font-face {
-  font-family: "Roboto-Regular";
-  src: url("./fonts/Roboto-Regular.ttf");
+.visible.transition {
+  margin-top: auto !important;
+  display: inline-block !important;
+  position: relative;
+  top: 30%;
 }
