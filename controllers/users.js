@@ -19,7 +19,15 @@ exports.signInUser = (req, res, next) => {
     .then(user => {
       console.log("From database", user);
       if (user) {
-        res.status(200).json({ message: "Ciotka" });
+        res
+          .status(200)
+          .json({
+            token:
+              req.body.email == "admin@admin.com" &&
+              req.body.password == "Admin1"
+                ? "special"
+                : String(user._id)
+          });
       } else {
         res.status(404).json({ message: "No such user!" });
       }
@@ -36,7 +44,6 @@ exports.signUpUser = (req, res, next) => {
     password: req.body.password
   };
   const newUser = new User(user);
-
   newUser
     .save()
     .then(result =>

@@ -90,7 +90,6 @@ class NewPostForm extends Component {
                 fluid
                 label="Category"
                 id="category"
-                value={this.state.category}
                 onChange={this.handleCategoryChange}
                 name="category"
                 options={options}
@@ -102,7 +101,6 @@ class NewPostForm extends Component {
                   id="title"
                   label="Title"
                   placeholder="Enter your title"
-                  value={this.state.title}
                   onChange={this.handleTitleChange}
                   name="title"
                   required
@@ -113,7 +111,6 @@ class NewPostForm extends Component {
                 label="About"
                 id="content"
                 rows="10"
-                value={this.state.content}
                 onChange={this.handleContentChange}
                 name="content"
                 required
@@ -141,7 +138,6 @@ class NewPostForm extends Component {
                   label="Author"
                   id="author"
                   placeholder="Enter your name"
-                  value={this.state.author}
                   onChange={this.handleAuthorChange}
                   name="author"
                   required

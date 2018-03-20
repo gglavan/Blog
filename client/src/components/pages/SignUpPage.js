@@ -16,7 +16,7 @@ const SignUpPage = () => (
           <Grid.Column width={5}>
             <Header as="h2" icon textAlign="center">
               <Icon name="setting" />
-              <Header.Content>REGISTRATION</Header.Content>
+              <Header.Content>REGISTER</Header.Content>
             </Header>
             <Segment>
               <SignUp />

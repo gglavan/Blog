@@ -3,14 +3,15 @@ import history from "../../history";
 
 class Redirect extends Component {
   componentDidMount() {
-    if (this.props.path == "signin") {
+    if (this.props.path == "/signin") {
       setTimeout(() => {
-        history.push(`/${this.props.path}`);
-        history.go(`/${this.props.path}`);
+        history.push(`${this.props.path}`);
+        history.go(`${this.props.path}`);
       }, 500);
     } else {
-      history.push(`/${this.props.path}`);
-      history.go(`/${this.props.path}`);
+      localStorage.setItem("token", this.props.token);
+      history.push(`${this.props.path}`);
+      history.go(`${this.props.path}`);
     }
   }
 

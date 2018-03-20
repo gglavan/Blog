@@ -46,7 +46,7 @@ export function userSignInIsLoading(state = false, action) {
 export function loggedUser(state = {}, action) {
   switch (action.type) {
     case "USER_SIGN_IN_SUCCESS":
-      return action.message;
+      return action.token;
     default:
       return state;
   }

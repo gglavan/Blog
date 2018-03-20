@@ -18,7 +18,8 @@ class SignUp extends Component {
   state = {
     email: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
+    error: false
   };
 
   validateEmail = email => {
@@ -42,13 +43,20 @@ class SignUp extends Component {
       this.validatePassword(this.state.password) &&
       this.state.password === this.state.confirmPassword
     ) {
+      this.setState({ error: false });
       this.props.userSignUp("/api/users/signup", this.state);
+    } else {
+      this.setState({ error: true });
     }
   };
 
   render() {
     return (
       <Form onSubmit={this.handleSubmit} onChange={this.handleChange}>
+        <Message negative hidden={!this.state.error}>
+          <Message.Header>{"Wrong email or password"}</Message.Header>
+          <p>{"Please verify the text you entered"}</p>
+        </Message>
         <Form.Field>
           <Input iconPosition="left" placeholder="Email">
             <Icon name="at" />
@@ -89,7 +97,7 @@ class SignUp extends Component {
             <Message positive>
               <Message.Header>{this.props.message}</Message.Header>
               <p>{"You may now log-in with the username you have chosen"}</p>
-              <Redirect path={"signin"} />
+              <Redirect path={"/signin"} />
             </Message>
           )}
       </Form>

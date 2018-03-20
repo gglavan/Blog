@@ -71,18 +71,20 @@ class PostFull extends Component {
                 By <span className="orange">{this.props.author}</span> on{" "}
                 {this.props.date}
               </div>
-              <div>
-                <Button
-                  size="tiny"
-                  color="blue"
-                  as={Link}
-                  to={`/posts/edit/${this.props._id}`}
-                >
-                  <Icon name="pencil" />
-                  Edit
-                </Button>
-                <ConfirmModal handleDelete={this.handleDelete} />
-              </div>
+              {localStorage.getItem("token") === "special" ? (
+                <div>
+                  <Button
+                    size="tiny"
+                    color="blue"
+                    as={Link}
+                    to={`/posts/edit/${this.props._id}`}
+                  >
+                    <Icon name="pencil" />
+                    Edit
+                  </Button>
+                  <ConfirmModal handleDelete={this.handleDelete} />
+                </div>
+              ) : null}
             </div>
           </Container>
         </Segment>

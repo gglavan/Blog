@@ -22,18 +22,27 @@ const Wrapper = styled("div")`
 const App = () => (
   <Wrapper>
     <NavigationBar />
-    <Switch>
-      <Route path="/" exact component={HomePage} />
-      <Route path="/about" exact component={AboutPage} />
-      <Route path="/contacts" exact component={ContactsPage} />
-      <Route path="/posts" exact component={PostsPage} />
-      <Route path="/signup" exact component={SignUpPage} />
-      <Route path="/signin" exact component={SignInPage} />
-      <Route path="/posts/:id" exact component={PostDetailsPage} />
-      <Route path="/posts/edit/:id" exact component={PostEditPage} />
-      <Route path="/posts/add/new" exact component={PostAddPage} />
-      <Route path="*" component={NotFoundPage} />
-    </Switch>
+
+    {localStorage.getItem("token") ? (
+      <Switch>
+        <Route path="/" exact component={HomePage} />
+        <Route path="/about" exact component={AboutPage} />
+        <Route path="/contacts" exact component={ContactsPage} />
+        <Route path="/posts" exact component={PostsPage} />
+        <Route path="/signup" exact component={SignUpPage} />
+        <Route path="/signin" exact component={SignInPage} />
+        <Route path="/posts/:id" exact component={PostDetailsPage} />
+        <Route path="/posts/edit/:id" exact component={PostEditPage} />
+        <Route path="/posts/add/new" exact component={PostAddPage} />
+        <Route path="*" component={NotFoundPage} />
+      </Switch>
+    ) : (
+      <Switch>
+        <Route path="/signup" exact component={SignUpPage} />
+        <Route path="/signin" exact component={SignInPage} />
+        <Route path="*" component={NotFoundPage} />
+      </Switch>
+    )}
   </Wrapper>
 );
 

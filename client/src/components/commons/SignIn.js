@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { Button, Form, Input, Icon, Loader } from "semantic-ui-react";
+import { Button, Form, Input, Icon, Loader, Message } from "semantic-ui-react";
 import { userSignInRequest } from "../../actions/userActions";
 import Redirect from "./Redirect";
 
@@ -27,13 +27,13 @@ class SignIn extends Component {
         <Form.Field>
           <Input iconPosition="left" placeholder="Email">
             <Icon name="at" />
-            <input name="email" />
+            <input type="email" name="email" required />
           </Input>
         </Form.Field>
         <Form.Field>
           <Input iconPosition="left" placeholder="Password">
             <Icon name="lock" />
-            <input type="password" name="password" />
+            <input type="password" name="password" required />
           </Input>
         </Form.Field>
         <Button fluid type="submit" color="blue">
@@ -44,20 +44,30 @@ class SignIn extends Component {
           <Icon name="pointing right" />
           {"Don't have an account?"}
         </Link>
-        {this.props.isLoading && (
+        {this.props.isLoading && !this.props.hasErrored ? (
           <Loader active inline="centered">
             Loading...
           </Loader>
+        ) : (
+          this.props.isLoading &&
+          this.props.hasErrored && (
+            <Message negative hidden={this.isHidden}>
+              <Message.Header>{"Wrong email or password"}</Message.Header>
+              <p>{"Please verify the text you entered"}</p>
+            </Message>
+          )
         )}
         {!this.props.isLoading &&
-          this.props.message !== undefined && <Redirect path={"posts"} />}
+          this.props.token !== undefined && (
+            <Redirect path={"/"} token={this.props.token} />
+          )}
       </Form>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  message: state.loggedUser.message,
+  token: state.loggedUser.token,
   hasErrored: state.userSignInHasErrored,
   isLoading: state.userSignInIsLoading
 });
@@ -70,7 +80,7 @@ SignIn.propTypes = {
   userSignIn: PropTypes.func.isRequired,
   hasErrored: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  message: PropTypes.string.isRequired
+  token: PropTypes.string.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

@@ -49,10 +49,10 @@ export function userSignInIsLoading(bool) {
     isLoading: bool
   };
 }
-export function userSignInSuccess(message) {
+export function userSignInSuccess(token) {
   return {
     type: "USER_SIGN_IN_SUCCESS",
-    message
+    token
   };
 }
 
@@ -65,7 +65,7 @@ export function userSignInRequest(url, data) {
         dispatch(userSignInIsLoading(false));
         return response.data;
       })
-      .then(message => dispatch(userSignInSuccess(message)))
-      .catch(() => dispatch(userSignInHasErrored(true)));
+      .then(token => dispatch(userSignInSuccess(token)))
+      .catch(err => dispatch(userSignInHasErrored(true)));
   };
 }
