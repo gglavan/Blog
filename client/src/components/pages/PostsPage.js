@@ -22,16 +22,16 @@ const searchBar = css`
 `;
 
 class PostsPage extends Component {
-  componentDidMount() {
-    this.props.fetchData("/api/posts");
-  }
-
   state = {
     currentValue: "",
     searchTerm: "",
     isLoading: false,
     typingTimeOut: 0
   };
+
+  componentDidMount() {
+    this.props.fetchData("/api/posts");
+  }
 
   handleSearchTermChange = event => {
     const term = event.target.value;

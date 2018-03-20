@@ -8,7 +8,8 @@ import {
   Container,
   TextArea,
   Button,
-  Form
+  Form,
+  Select
 } from "semantic-ui-react";
 import history from "../../history";
 
@@ -37,10 +38,6 @@ class NewPostForm extends Component {
     author: ""
   };
 
-  handleCategoryChange = e => {
-    this.setState({ category: e.target.value });
-  };
-
   handleTitleChange = e => {
     this.setState({ title: e.target.value });
   };
@@ -59,6 +56,7 @@ class NewPostForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    console.log(this.state);
     const formData = new FormData();
     formData.append("category", this.state.category);
     formData.append("title", this.state.title);
@@ -86,15 +84,18 @@ class NewPostForm extends Component {
           </Header>
           <Container>
             <Form onSubmit={this.handleSubmit}>
-              <Form.Select
+              <label htmlFor="category">
+                <strong>Category</strong>
+              </label>
+              <Select
                 fluid
                 label="Category"
                 id="category"
-                onChange={this.handleCategoryChange}
                 name="category"
                 options={options}
                 placeholder="Category"
                 required
+                onChange={(e, { value }) => this.setState({ category: value })}
               />
               <Form.Field>
                 <Form.Input
@@ -118,17 +119,10 @@ class NewPostForm extends Component {
               />
               <Form.Field>
                 <label htmlFor="image">Choose another picture:</label>
-                <Button
-                  onClick={() => document.getElementById("image").click()}
-                >
-                  <Icon name="file" />
-                  Open File
-                </Button>
                 <Form.Input
                   type="file"
                   id="image"
                   name="image"
-                  style={{ display: "none" }}
                   onChange={this.handleImageChange}
                 />
               </Form.Field>

@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import { Component } from "react";
+import PropTypes from "prop-types";
 import history from "../../history";
 
 class Redirect extends Component {
   componentDidMount() {
-    if (this.props.path == "/signin") {
+    if (this.props.path === "/signin") {
       setTimeout(() => {
         history.push(`${this.props.path}`);
         history.go(`${this.props.path}`);
@@ -19,5 +20,10 @@ class Redirect extends Component {
     return null;
   }
 }
+
+Redirect.propTypes = {
+  path: PropTypes.string.isRequired,
+  token: PropTypes.string.isRequired
+};
 
 export default Redirect;

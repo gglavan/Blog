@@ -66,6 +66,6 @@ export function userSignInRequest(url, data) {
         return response.data;
       })
       .then(token => dispatch(userSignInSuccess(token)))
-      .catch(err => dispatch(userSignInHasErrored(true)));
+      .catch(() => dispatch(userSignInHasErrored(true)));
   };
 }

@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Image, Icon, Segment, Container, Button } from "semantic-ui-react";
+import {
+  Image,
+  Icon,
+  Segment,
+  Container,
+  Button,
+  Grid
+} from "semantic-ui-react";
 import styled, { css } from "react-emotion";
 import PropTypes from "prop-types";
 import axios from "axios";
@@ -32,18 +39,21 @@ const postContent = css`
   font-size: 14px;
   text-align: justify;
   padding: 20px;
-}`;
+`;
 
 const postDate = css`
-  margin-top: 25px;
+  margin: 25px 0px;
   font-size: 14px;
   font-style: italic;
-}`;
+`;
 
-const alignedVertical = css`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+const buttonChange = css`
+  margin-left: 10px;
+  @media (max-width: 578px) {
+    display: block;
+    margin: 15px 10px;
+    width: 100%;
+  }
 `;
 
 class PostFull extends Component {
@@ -66,24 +76,31 @@ class PostFull extends Component {
             </div>
             <div className={postTitle}>{this.props.title}</div>
             <div className={postContent}>{this.props.content}</div>
-            <div className={alignedVertical}>
-              <div className={`${postDate} text-muted`}>
+            <div>
+              <div
+                style={{ marginLeft: "10px" }}
+                className={`${postDate} text-muted`}
+              >
                 By <span className="orange">{this.props.author}</span> on{" "}
                 {this.props.date}
               </div>
               {localStorage.getItem("token") === "special" ? (
-                <div>
-                  <Button
-                    size="tiny"
-                    color="blue"
-                    as={Link}
-                    to={`/posts/edit/${this.props._id}`}
-                  >
-                    <Icon name="pencil" />
-                    Edit
-                  </Button>
-                  <ConfirmModal handleDelete={this.handleDelete} />
-                </div>
+                <Grid middle aligned style={{ marginLeft: "10px" }}>
+                  <Grid.Row>
+                    <Button
+                      className={buttonChange}
+                      size="tiny"
+                      color="blue"
+                      as={Link}
+                      style={{ float: "right" }}
+                      to={`/posts/edit/${this.props._id}`}
+                    >
+                      <Icon name="pencil" />
+                      Edit
+                    </Button>
+                    <ConfirmModal handleDelete={this.handleDelete} />
+                  </Grid.Row>
+                </Grid>
               ) : null}
             </div>
           </Container>

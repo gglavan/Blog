@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 import { Button, Modal, Icon } from "semantic-ui-react";
+import { css } from "react-emotion";
 import PropTypes from "prop-types";
+
+const buttonChange = css`
+  @media (max-width: 578px) {
+    display: block;
+    width: 100%;
+    margin: 10px 15px;
+  }
+`;
 
 class ConfirmModal extends Component {
   state = { open: false };
@@ -12,8 +21,13 @@ class ConfirmModal extends Component {
     const { open, size } = this.state;
 
     return (
-      <div>
-        <Button onClick={this.show("tiny")} color="red" size="tiny">
+      <div className={buttonChange}>
+        <Button
+          className={buttonChange}
+          onClick={this.show("tiny")}
+          color="red"
+          size="tiny"
+        >
           <Icon name="trash" />Delete
         </Button>
         <Modal size={size} open={open} onClose={this.close}>

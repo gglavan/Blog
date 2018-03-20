@@ -39,20 +39,6 @@ export default class NavigationBar extends Component {
                 active={activeItem === "new post"}
                 onClick={this.handleItemClick}
               />
-              <Menu.Item
-                as={Link}
-                to="/about"
-                name="about"
-                active={activeItem === "about"}
-                onClick={this.handleItemClick}
-              />
-              <Menu.Item
-                as={Link}
-                to="/contacts"
-                name="contacts"
-                active={activeItem === "contacts"}
-                onClick={this.handleItemClick}
-              />
               <Menu.Menu position="right">
                 <Menu.Item as={Link} to="/signin" onClick={this.handleLogout}>
                   <Icon name="sign out" />Logout

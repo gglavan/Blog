@@ -6,8 +6,6 @@ import PostsPage from "./components/pages/PostsPage";
 import PostDetailsPage from "./components/pages/PostDetailsPage";
 import PostAddPage from "./components/pages/PostAddPage";
 import PostEditPage from "./components/pages/PostEditPage";
-import AboutPage from "./components/pages/AboutPage";
-import ContactsPage from "./components/pages/ContactsPage";
 import NotFoundPage from "./components/pages/NotFoundPage";
 import NavigationBar from "./components/commons/NavigationBar";
 import SignUpPage from "./components/pages/SignUpPage";
@@ -26,11 +24,7 @@ const App = () => (
     {localStorage.getItem("token") ? (
       <Switch>
         <Route path="/" exact component={HomePage} />
-        <Route path="/about" exact component={AboutPage} />
-        <Route path="/contacts" exact component={ContactsPage} />
         <Route path="/posts" exact component={PostsPage} />
-        <Route path="/signup" exact component={SignUpPage} />
-        <Route path="/signin" exact component={SignInPage} />
         <Route path="/posts/:id" exact component={PostDetailsPage} />
         <Route path="/posts/edit/:id" exact component={PostEditPage} />
         <Route path="/posts/add/new" exact component={PostAddPage} />

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import {
-  Icon,
   Header,
   Segment,
   Container,
   TextArea,
   Button,
-  Form
+  Form,
+  Select
 } from "semantic-ui-react";
 import styled from "react-emotion";
 import axios from "axios";
@@ -98,16 +98,19 @@ class PostEditForm extends Component {
           </Header>
           <Container>
             <Form onSubmit={this.handleSubmit}>
-              <Form.Select
+              <label htmlFor="category">
+                <strong>Category</strong>
+              </label>
+              <Select
                 fluid
                 label="Category"
                 id="category"
-                value={this.state.category}
-                onChange={this.handleCategoryChange}
                 name="category"
                 options={options}
                 placeholder="Category"
                 required
+                value={this.state.category}
+                onChange={(e, { value }) => this.setState({ category: value })}
               />
               <Form.Field>
                 <Form.Input
@@ -133,15 +136,10 @@ class PostEditForm extends Component {
               />
               <Form.Field>
                 <label htmlFor="image">Choose another picture:</label>
-                <Button>
-                  <Icon name="file" />
-                  Open File
-                </Button>
                 <Form.Input
                   type="file"
                   id="image"
                   name="image"
-                  style={{ display: "none" }}
                   onChange={this.handleImageChange}
                 />
               </Form.Field>
